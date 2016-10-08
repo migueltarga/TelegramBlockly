@@ -25,8 +25,8 @@
             <block type="telegram_plugin_ping"></block>
         </category>
 
-        <category name="Samples" expanded="true">
-            <category name="Pooling Sample">
+        <category name="Samples">
+            <category name="Pooling">
                 <block type="telegram_init">
                     <statement name="config">
                         <block type="telegram_config" >
@@ -42,6 +42,56 @@
                             </value>
                             <statement name="bot_conection">
                                 <block type="telegram_pooling" ></block>
+                            </statement>
+                        </block>
+                    </statement>
+                    <next>
+                        <block type="telegram_action">
+                            <field name="NAME">text</field>
+                            <statement name="message">
+                                <block type="telegram_plugin_ping">
+                                    <value name="ping_command">
+                                        <block type="text">
+                                            <field name="TEXT">/ping</field>
+                                        </block>
+                                    </value>
+                                    <statement name="ping_response">
+                                        <block type="telegram_sendmessage"></block>
+                                    </statement>
+                                </block>
+                            </statement>
+                        </block>
+                    </next>
+                </block>
+            </category>
+
+            <category name="Webhook">
+                <block type="telegram_init">
+                    <statement name="config">
+                        <block type="telegram_config">
+                            <value name="bot_name">
+                                <block type="text">
+                                    <field name="TEXT">My Bot</field>
+                                </block>
+                            </value>
+                            <value name="bot_token">
+                                <block type="text">
+                                    <field name="TEXT">MY_TOKEN_GOES_HERE</field>
+                                </block>
+                            </value>
+                            <statement name="bot_conection">
+                                <block type="telegram_webhook">
+                                    <value name="webhook_url">
+                                        <block type="text">
+                                            <field name="TEXT">http://myurl.com/bot</field>
+                                        </block>
+                                    </value>
+                                    <value name="webhook_port">
+                                        <block type="math_number">
+                                            <field name="NUM">8080</field>
+                                        </block>
+                                    </value>
+                                </block>
                             </statement>
                         </block>
                     </statement>
