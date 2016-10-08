@@ -74,6 +74,35 @@ Blockly.Blocks['telegram_action'] = {
     }
 };
 
+Blockly.Blocks['telegram_plugin_ping'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Ping");
+        this.appendValueInput("ping_command")
+            .setCheck("String")
+            .appendField("Command");
+        this.appendStatementInput("ping_response")
+            .setCheck(null)
+            .appendField("Output");
+        this.setPreviousStatement(true, "Action");
+        this.setNextStatement(true, "Action");
+        this.setColour(210);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+
+Blockly.Blocks['telegram_sendmessage'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Send Message");
+        this.setPreviousStatement(true, null);
+        this.setColour(300);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+
 //      Blockly.JavaScript['telegram_config'] = function(block) {
 //          var value_bot_name = Blockly.JavaScript.valueToCode(block, 'bot_name', Blockly.JavaScript.ORDER_ATOMIC);
 //          var value_bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);
@@ -113,3 +142,18 @@ Blockly.Blocks['telegram_action'] = {
 //          var code = '...;\n';
 //          return code;
 //      };
+
+//Blockly.JavaScript['telegram_plugin_ping'] = function(block) {
+//    var value_ping_command = Blockly.JavaScript.valueToCode(block, 'ping_command', Blockly.JavaScript.ORDER_ATOMIC);
+//    var statements_ping_response = Blockly.JavaScript.statementToCode(block, 'ping_response');
+//    // TODO: Assemble JavaScript into code variable.
+//    var code = '...;\n';
+//    return code;
+//};
+
+
+//Blockly.JavaScript['telegram_sendmessage'] = function(block) {
+//    // TODO: Assemble JavaScript into code variable.
+//    var code = '...;\n';
+//    return code;
+//};
