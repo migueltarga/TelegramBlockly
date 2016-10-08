@@ -24,6 +24,47 @@
         <category name="Actions">
             <block type="telegram_plugin_ping"></block>
         </category>
+
+        <category name="Samples" expanded="true">
+            <category name="Pooling Sample">
+                <block type="telegram_init">
+                    <statement name="config">
+                        <block type="telegram_config" >
+                            <value name="bot_name">
+                                <block type="text">
+                                    <field name="TEXT">My Bot</field>
+                                </block>
+                            </value>
+                            <value name="bot_token">
+                                <block type="text">
+                                    <field name="TEXT">MY_TOKEN_GOES_HERE</field>
+                                </block>
+                            </value>
+                            <statement name="bot_conection">
+                                <block type="telegram_pooling" ></block>
+                            </statement>
+                        </block>
+                    </statement>
+                    <next>
+                        <block type="telegram_action">
+                            <field name="NAME">text</field>
+                            <statement name="message">
+                                <block type="telegram_plugin_ping">
+                                    <value name="ping_command">
+                                        <block type="text">
+                                            <field name="TEXT">/ping</field>
+                                        </block>
+                                    </value>
+                                    <statement name="ping_response">
+                                        <block type="telegram_sendmessage"></block>
+                                    </statement>
+                                </block>
+                            </statement>
+                        </block>
+                    </next>
+                </block>
+            </category>
+        </category>
     </xml>
     <script src="js/blockly_compressed.js"></script>
     <script src="js/blocks_compressed.js"></script>

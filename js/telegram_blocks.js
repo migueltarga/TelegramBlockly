@@ -68,6 +68,7 @@ Blockly.Blocks['telegram_action'] = {
             .setCheck(null)
             .appendField(new Blockly.FieldDropdown([["On Text", "text"], ["On Voice", "voice"]]), "NAME");
         this.setPreviousStatement(true, "Action");
+        this.setNextStatement(true, "Action");
         this.setColour(350);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
