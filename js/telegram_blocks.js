@@ -75,7 +75,6 @@ Blockly.Blocks['telegram_command'] = {
     }
 };
 
-
 Blockly.Blocks['telegram_sendmessage'] = {
     init: function() {
         this.appendValueInput("telegram_send")
@@ -86,7 +85,6 @@ Blockly.Blocks['telegram_sendmessage'] = {
         this.setTooltip('Send text message');
     }
 };
-
 
 Blockly.JavaScript['telegram_init'] = function(block) {
     var token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);
@@ -147,5 +145,3 @@ Blockly.JavaScript['telegram_sendmessage'] = function(block) {
     var reply = Blockly.JavaScript.valueToCode(block, 'telegram_send', Blockly.JavaScript.ORDER_ATOMIC);
     return reply+", 'text'";
 };
-
-
