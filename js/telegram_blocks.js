@@ -60,9 +60,12 @@ Blockly.Blocks['telegram_command'] = {
     init: function() {
         this.appendDummyInput()
             .appendField("Command");
+        this.appendValueInput("name_input")
+            .setCheck("String")
+            .appendField("Name");
         this.appendValueInput("command_input")
             .setCheck("String")
-            .appendField("message");
+            .appendField("Input");
         this.appendStatementInput("command_output")
             .setCheck(null)
             .appendField("Output");
@@ -103,35 +106,20 @@ Blockly.JavaScript['telegram_webhook'] = function(block) {
 };
 
 Blockly.JavaScript['telegram_pooling'] = function(block) {
-  return "";
+    return "";
 };
 
 Blockly.JavaScript['telegram_action'] = function(block) {
-  var statements_message = Blockly.JavaScript.statementToCode(block, 'action');
-  var value_on = Blockly.JavaScript.valueToCode(block, 'ON', Blockly.JavaScript.ORDER_ATOMIC);
-  return "";
+    var statements_message = Blockly.JavaScript.statementToCode(block, 'action');
+    var value_on = Blockly.JavaScript.valueToCode(block, 'ON', Blockly.JavaScript.ORDER_ATOMIC);
+    console.log(statements_message);
+    return "tg.router\n"+ statements_message+";";
 };
 
+Blockly.JavaScript['telegram_command'] = function(block) {
+    var name = Blockly.JavaScript.valueToCode(block, 'name_input', Blockly.JavaScript.ORDER_ATOMIC);
+    var command = Blockly.JavaScript.valueToCode(block, 'command_input', Blockly.JavaScript.ORDER_ATOMIC);
+    if(!name) return "";
 
-//      Blockly.JavaScript['telegram_action'] = function(block) {
-//          var dropdown_name = block.getFieldValue('NAME');
-//          var statements_message = Blockly.JavaScript.statementToCode(block, 'message');
-//          // TODO: Assemble JavaScript into code variable.
-//          var code = '...;\n';
-//          return code;
-//      };
-
-//Blockly.JavaScript['telegram_plugin_ping'] = function(block) {
-//    var value_ping_command = Blockly.JavaScript.valueToCode(block, 'ping_command', Blockly.JavaScript.ORDER_ATOMIC);
-//    var statements_ping_response = Blockly.JavaScript.statementToCode(block, 'ping_response');
-//    // TODO: Assemble JavaScript into code variable.
-//    var code = '...;\n';
-//    return code;
-//};
-
-
-//Blockly.JavaScript['telegram_sendmessage'] = function(block) {
-//    // TODO: Assemble JavaScript into code variable.
-//    var code = '...;\n';
-//    return code;
-//};
+    return  ".when(new TextCommand("+command+", 'xxxCommand'), new XxxController())\n";
+};
