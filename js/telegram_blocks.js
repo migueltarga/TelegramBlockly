@@ -14,7 +14,6 @@ Blockly.Blocks['telegram_init'] = {
     }
 };
 
-
 Blockly.Blocks['telegram_webhook'] = {
     init: function() {
         this.appendDummyInput()
@@ -99,6 +98,7 @@ Blockly.JavaScript['telegram_init'] = function(block) {
         "const tg = new Telegram.Telegram("+token+connection+");\n\n" +
         "class BlocklyController extends TelegramBaseController {\n"+
         "    constructor(cmd, reply, type) {\n"+
+        "        super();\n"+
         "        this.command = cmd;\n"+
         "        this.reply = reply;\n"+
         "        this.replyType = type;\n"+
@@ -139,9 +139,7 @@ Blockly.JavaScript['telegram_command'] = function(block) {
     var name = Blockly.JavaScript.valueToCode(block, 'name_input', Blockly.JavaScript.ORDER_ATOMIC);
     var command = Blockly.JavaScript.valueToCode(block, 'command_input', Blockly.JavaScript.ORDER_ATOMIC);
     if(!name) return "";
-
     var command_output = Blockly.JavaScript.statementToCode(block, 'command_output');
-
     return  ".when(new TextCommand("+command+", "+name+"), new BlocklyController("+name+", "+command_output+"))\n";
 };
 
