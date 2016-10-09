@@ -96,7 +96,26 @@ Blockly.JavaScript['telegram_init'] = function(block) {
         "const Telegram = require('telegram-node-bot');\n" +
         "const TelegramBaseController = Telegram.TelegramBaseController;\n" +
         "const TextCommand = Telegram.TextCommand;\n" +
-        "const tg = new Telegram.Telegram("+token+connection+");\n";
+        "const tg = new Telegram.Telegram("+token+connection+");\n\n" +
+        "class BlocklyController extends TelegramBaseController {\n"+
+        "    constructor(cmd, reply, type) {\n"+
+        "        this.command = cmd;\n"+
+        "        this.reply = reply;\n"+
+        "        this.replyType = type;\n"+
+        "   }\n"+
+        "    commandHandler($) {\n"+
+        "        switch(this.replyType){\n"+
+        "           case 'text':\n"+
+        "               $.sendMessage(this.reply)\n"+
+        "               break;\n"+
+        "        }\n"+
+        "   }\n"+
+        "    get routes() {\n"+
+        "        let route = {};\n"+
+        "        route[this.command] = 'commandHandler';\n"+
+        "        return route;\n"+
+        "    }\n"+
+        "}\n\n";
 };
 
 Blockly.JavaScript['telegram_webhook'] = function(block) {
@@ -121,5 +140,14 @@ Blockly.JavaScript['telegram_command'] = function(block) {
     var command = Blockly.JavaScript.valueToCode(block, 'command_input', Blockly.JavaScript.ORDER_ATOMIC);
     if(!name) return "";
 
-    return  ".when(new TextCommand("+command+", 'xxxCommand'), new XxxController())\n";
+    var command_output = Blockly.JavaScript.statementToCode(block, 'command_output');
+
+    return  ".when(new TextCommand("+command+", "+name+"), new BlocklyController("+name+", "+command_output+"))\n";
 };
+
+Blockly.JavaScript['telegram_sendmessage'] = function(block) {
+    var reply = Blockly.JavaScript.valueToCode(block, 'telegram_send', Blockly.JavaScript.ORDER_ATOMIC);
+    return reply+", 'text'";
+};
+
+
