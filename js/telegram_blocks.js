@@ -105,17 +105,19 @@ Blockly.Blocks['telegram_sendmessage'] = {
 };
 
       Blockly.JavaScript['telegram_init'] = function(block) {
-          return '/*\nCreated By Telegram Blockly\n*/\n\n';
+          return "'use strict'\n\n" +
+              "const Telegram = require('telegram-node-bot');\n" +
+              "const TelegramBaseController = Telegram.TelegramBaseController;\n" +
+              "const TextCommand = Telegram.TextCommand;\n";
       };
 
-//      Blockly.JavaScript['telegram_config'] = function(block) {
-//          var value_bot_name = Blockly.JavaScript.valueToCode(block, 'bot_name', Blockly.JavaScript.ORDER_ATOMIC);
-//          var value_bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);
-//          var statements_bot_conection = Blockly.JavaScript.statementToCode(block, 'bot_conection');
-//          // TODO: Assemble JavaScript into code variable.
-//          var code = '...;\n';
-//          return code;
-//      };
+      Blockly.JavaScript['telegram_config'] = function(block) {
+          var value_bot_name = Blockly.JavaScript.valueToCode(block, 'bot_name', Blockly.JavaScript.ORDER_ATOMIC);
+          var value_bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);
+          var statements_bot_conection = Blockly.JavaScript.statementToCode(block, 'bot_conection');
+
+          //return "const tg = new Telegram.Telegram('"+value_bot_token+"');\n";
+      };
 
 
 //      Blockly.JavaScript['telegram_webhook'] = function(block) {
@@ -126,11 +128,9 @@ Blockly.Blocks['telegram_sendmessage'] = {
 //          return code;
 //      };
 
-//      Blockly.JavaScript['telegram_pooling'] = function(block) {
-//          // TODO: Assemble JavaScript into code variable.
-//          var code = '...;\n';
-//          return code;
-//      };
+      Blockly.JavaScript['telegram_pooling'] = function(block) {
+          return "";
+      };
 
 //      Blockly.JavaScript['telegram_action_ontext'] = function(block) {
 //          var statements_message = Blockly.JavaScript.statementToCode(block, 'message');
