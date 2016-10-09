@@ -4,7 +4,7 @@ Simple way to create [telegram-node-bot](https://github.com/Naltox/telegram-node
 
 ## Getting Started
 
-Under Development, it doesn't work yet!!!
+Under Development!
 
 ## Preview
 
