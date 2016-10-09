@@ -104,6 +104,10 @@ Blockly.Blocks['telegram_sendmessage'] = {
     }
 };
 
+      Blockly.JavaScript['telegram_init'] = function(block) {
+          return '/*\nCreated By Telegram Blockly\n*/\n\n';
+      };
+
 //      Blockly.JavaScript['telegram_config'] = function(block) {
 //          var value_bot_name = Blockly.JavaScript.valueToCode(block, 'bot_name', Blockly.JavaScript.ORDER_ATOMIC);
 //          var value_bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);
