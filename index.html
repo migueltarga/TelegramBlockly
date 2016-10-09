@@ -53,6 +53,46 @@
             <block type="text"></block>
             <block type="math_number"></block>
         </category>
+        <category name="Samples">
+            <block type="telegram_init">
+                <value name="bot_token">
+                    <block type="text">
+                        <field name="TEXT">YOUR_TOKEN</field>
+                    </block>
+                </value>
+                <statement name="config">
+                    <block type="telegram_pooling"></block>
+                </statement>
+                <next>
+                    <block type="telegram_action">
+                        <field name="ON">text</field>
+                        <statement name="action">
+                            <block type="telegram_command">
+                                <value name="name_input">
+                                    <block type="text">
+                                        <field name="TEXT">Ping</field>
+                                    </block>
+                                </value>
+                                <value name="command_input">
+                                    <block type="text">
+                                        <field name="TEXT">/ping</field>
+                                    </block>
+                                </value>
+                                <statement name="command_output">
+                                    <block type="telegram_sendmessage">
+                                        <value name="telegram_send">
+                                            <block type="text">
+                                                <field name="TEXT">/pong</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </statement>
+                            </block>
+                        </statement>
+                    </block>
+                </next>
+            </block>
+        </category>
     </xml>
     <script src="js/blockly_compressed.js"></script>
     <script src="js/blocks_compressed.js"></script>
